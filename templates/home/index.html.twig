@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<h1>Gérer les annonces</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="container">
+        <table>
+            <thead>
+                <th>Titre</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Voir le message</th>
+
+            </thead>
+
+            <tbody>
+
+                {% for topic in topics %}
+                    <tr>
+                        <td>{{ topic.titre }}</td>
+                        <td><small>{{ topic.message }}</small></td>
+                        <td>{{ topic.createdAt|date('d-m-Y') }}</td>
+                        <td><a href="{{ path('topic_show', { id: topic.id }) }}">Aller voir le sujet</a></td>
+
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {{ knp_pagination_render(topics) }}
+        </div>
+
+    </div>
+
+{% endblock %}

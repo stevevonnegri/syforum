@@ -14,6 +14,13 @@
         {% endblock %}
     </head>
     <body>
+        {% block base %}
+        
+        {{ include('_inc/_menu.html.twig') }}
+
         {% block body %}{% endblock %}
+        
+        
+        {% endblock %}
     </body>
 </html>
